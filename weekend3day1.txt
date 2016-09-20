@@ -1,0 +1,13 @@
+Maven project:
+    client       synchron message json
+    server
+    utils        converter json
+    pom.xml
+
+
+    1. run server
+    2. run client
+    3. server send message
+    4. client read message     blocking methods
+    5. client send message
+    6. server read message     blocking methods

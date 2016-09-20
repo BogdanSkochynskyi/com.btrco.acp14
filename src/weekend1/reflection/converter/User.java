@@ -2,9 +2,16 @@ package weekend1.reflection.converter;
 
 public class User {
 
+    @ForSave
     public int id;
+
+    @ForSave
     public String name;
+
+    @ForSave
     public String phoneNumber;
+
+    @ForSave
     public int age;
 
     public User() {

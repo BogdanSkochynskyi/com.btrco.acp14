@@ -39,7 +39,9 @@ public class ObjectStringConverterImpl implements ObjectStringConverter {
             for (String name : nameValueMap.keySet()) {
                 try {
                     Field field = cl.getField(name);
-                    field.set(object, converTo(nameValueMap.get(name), field.getType()));
+                    if (field.isAnnotationPresent(ForSave.class)) {
+                        field.set(object, converTo(nameValueMap.get(name), field.getType()));
+                    }
                 } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                 }
