@@ -15,13 +15,24 @@ public class ThreadIntro {
         myThread.setDaemon(true);
         myThread.start();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.printf("main working %d\n", i);
+
+            if (i == 10)
+            {
+                myThread.interrupt();
+            }
+
             try {
                 main.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        try {
+            main.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
