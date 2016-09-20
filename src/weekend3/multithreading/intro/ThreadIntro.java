@@ -1,4 +1,4 @@
-package weekend3.multithreading;
+package weekend3.multithreading.intro;
 
 public class ThreadIntro {
 

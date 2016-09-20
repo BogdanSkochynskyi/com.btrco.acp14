@@ -1,4 +1,4 @@
-package weekend3.multithreading;
+package weekend3.multithreading.join;
 
 import java.io.File;
 import java.util.ArrayList;
