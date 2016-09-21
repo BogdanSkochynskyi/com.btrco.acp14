@@ -4,7 +4,7 @@ public class Intro {
 
 
     public static void main(String[] args) {
-        Container c = new Container();
+        Container c = new ContainerSpinLock();
 
 		long start = System.currentTimeMillis();
 		
@@ -124,6 +124,30 @@ class Container {
 			count--;
 		}
     }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+//свой паттерн монитор
+class ContainerSpinLock extends Container {
+    private volatile int count;
+	private MyLock myLock = new MyLock();
+	
+	public synchronized void inc() // monitor this
+    {
+       	myLock.lock();
+		count++;
+		myLock.unlock();
+    }
+
+    public void decr()
+    {
+		myLock.lock();
+		count--;
+		myLock.unlock();
+	}
 
     public int getCount() {
         return count;
