@@ -6,6 +6,8 @@ public class Intro {
     public static void main(String[] args) {
         Container c = new Container();
 
+		long start = System.currentTimeMillis();
+		
             Thread thread1 = new Thread(new IncThread(c, 1000000));
             thread1.start();
             Thread thread2 =  new Thread(new DecrThread(c, 1000000));
@@ -17,8 +19,13 @@ public class Intro {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println(c.getCount());
+		
+		long end = System.currentTimeMillis();
+	
+		System.out.println("Time");
+		System.out.println(end - start);
+		System.out.println("Counter");
+		System.out.println(c.getCount());
 
     }
 
@@ -31,7 +38,12 @@ public class Intro {
 //Другие процессоры аналогично и никто не знает какие операции производит процессор в своем личном кэше ==> разные результаты постоянно
 //например есть инт = 0. И если два потока одновременно берут его на выполнение, то они оба берут 0 и если 
 // оба потока делают операцию +1, то оба и вернут 1, т.е теряется 1. Поэтому разные результаты получаются в этом примере
-//volatile
+//volatile если будет проц менять данные, то сообщит всем остальным потокам об этих изменениях который он произвел.
+//Это изменение уйдет в оперативку, и доступ к изменениям будет у всех процессоров. 
+// Но другие процессы переписывают ее так же и это не решает проблему
+//Если один поток работает пока переменная буллиан тру, а второй поток должен поменять эту переменную на фолс чтобы остановить первый поток, то
+//если булиан переменная не volatile то первый поток читает ее из своего кэша, а второй меняет ее тоже в своем кэше. 
+//Волатайл замедляет.
 
 
 
@@ -74,7 +86,7 @@ class DecrThread implements Runnable
 
 
 class Container {
-    private int count;
+    private volatile int count;
 
     public void inc()
     {
