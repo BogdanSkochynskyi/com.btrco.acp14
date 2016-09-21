@@ -9,7 +9,7 @@ public class ThreadJoin {
 
     public static void main(String[] args) {
 
-        File folder = new File("E:\\IdeaProjects\\com.btrco.acp14");
+        File folder = new File("C:\\git\\com.btrco.acp14");
 
         File[] files = folder.listFiles();
 
